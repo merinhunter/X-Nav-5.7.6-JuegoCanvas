@@ -80,6 +80,20 @@ addEventListener("keyup", function (e) {
 	delete keysDown[e.keyCode];
 }, false);
 
+addEventListener("close", function( event ) {
+  // make the close button ineffective
+	event.preventDefault();
+  localStorage.setItem("hero", hero);
+	localStorage.setItem("princess", princess);
+	localStorage.setItem("princessesCaught", princessesCaught);
+	localStorage.setItem("nStones", nStones);
+	localStorage.setItem("stones", stones);
+	localStorage.setItem("nMonsters", nMonsters);
+	localStorage.setItem("monsters", monsters);
+	localStorage.setItem("level", level);
+	localStorage.setItem("lives", lives);
+}, false);
+
 // Check if exists overlay
 var overlay = function(elem1, elem2, radius) {
 	return (Math.abs(elem1.x - elem2.x) < radius) && (Math.abs(elem1.y - elem2.y) < radius);
@@ -160,6 +174,39 @@ var PlusOrMinus = function(monster, hero) {
 		return -1;
 	}
 	return 1;
+}
+
+// Restore game variables
+var restoreGame = function() {
+	var tmp;
+
+	if (tmp = localStorage.getItem("hero") != null) {
+		hero = tmp;
+	}
+	if (tmp = localStorage.getItem("princess") != null) {
+		princess = tmp;
+	}
+	if (tmp = localStorage.getItem("princessesCaught") != null) {
+		princessesCaught = tmp;
+	}
+	if (tmp = localStorage.getItem("nStones") != null) {
+		nStones = tmp;
+	}
+	if (tmp = localStorage.getItem("stones") != null) {
+		stones = tmp;
+	}
+	if (tmp = localStorage.getItem("nMonsters") != null) {
+		nMonsters = tmp;
+	}
+	if (tmp = localStorage.getItem("monsters") != null) {
+		monsters = tmp;
+	}
+	if (tmp = localStorage.getItem("level") != null) {
+		level = tmp;
+	}
+	if (tmp = localStorage.getItem("lives") != null) {
+		lives = tmp;
+	}
 }
 
 // Reset the game when the player catches a princess
@@ -319,6 +366,7 @@ var main = function () {
 // Let's play this game!
 reset();
 var then = Date.now();
+restoreGame();
 //The setInterval() method will wait a specified number of milliseconds, and then execute a specified function, and it will continue to execute the function, once at every given time-interval.
 //Syntax: setInterval("javascript function",milliseconds);
 setInterval(main, 1); // Execute as fast as possible
