@@ -14,8 +14,23 @@ http://crossfire.real-time.com/images/princess_111.gif
 	<head>
 		<meta charset="utf-8">
 		<title>Simple Canvas Game</title>
+
+		<!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	</head>
 	<body>
 		<script src="js/game.js"></script>
+		<button type="button" id="new_game" class="btn btn-primary btn-lg">New Game</button>
+
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script>
+			$('#new_game').on('click', function (e) {
+				princessesCaught = 0;
+				level = 1;
+				lives = 5;
+				reset();
+			})
+		</script>
 	</body>
 </html>
